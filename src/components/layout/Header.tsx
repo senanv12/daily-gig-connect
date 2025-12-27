@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { User, LogOut, Menu, X, Briefcase, Plus } from 'lucide-react';
-import { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { User, LogOut, Menu, X, Briefcase, Plus, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -15,6 +15,7 @@ import {
 export function Header() {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -23,6 +24,46 @@ export function Header() {
   };
 
   const isEmployer = user?.role === 'employer';
+
+  // Handle smooth scroll for hash links
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    const isHashLink = to.includes('#');
+    const isCurrentPage = location.pathname === '/' || to.startsWith('/#');
+    
+    if (isHashLink && isCurrentPage) {
+      e.preventDefault();
+      const hash = to.split('#')[1];
+      const element = document.getElementById(hash);
+      
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      
+      // Update URL without navigation
+      window.history.pushState(null, '', to);
+    }
+    
+    setMobileMenuOpen(false);
+  };
+
+  // Handle hash on page load
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  const navLinks = [
+    { to: '/', label: 'Ana Səhifə', isPage: true },
+    { to: '/jobs', label: 'İş Elanları', isPage: true },
+    { to: '/#categories', label: 'Kateqoriyalar', isPage: false },
+    { to: '/#contact', label: 'Əlaqə', isPage: false },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-xl">
@@ -40,19 +81,25 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {[
-              { to: '/', label: 'Ana Səhifə' },
-              { to: '/#jobs', label: 'İş Elanları' },
-              { to: '/#categories', label: 'Kateqoriyalar' },
-              { to: '/#contact', label: 'Əlaqə' },
-            ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all font-medium"
-              >
-                {link.label}
-              </Link>
+            {navLinks.map((link) => (
+              link.isPage ? (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  onClick={(e) => handleNavClick(e, link.to)}
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all font-medium cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </nav>
 
@@ -94,12 +141,20 @@ export function Header() {
                       </Link>
                     </DropdownMenuItem>
                     {isEmployer && (
-                      <DropdownMenuItem asChild>
-                        <Link to="/create-job" className="flex items-center gap-2 cursor-pointer rounded-lg">
-                          <Briefcase className="h-4 w-4" />
-                          Elanlarım
-                        </Link>
-                      </DropdownMenuItem>
+                      <>
+                        <DropdownMenuItem asChild>
+                          <Link to="/my-ads" className="flex items-center gap-2 cursor-pointer rounded-lg">
+                            <FileText className="h-4 w-4" />
+                            Elanlarım
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link to="/create-job" className="flex items-center gap-2 cursor-pointer rounded-lg">
+                            <Plus className="h-4 w-4" />
+                            Yeni elan
+                          </Link>
+                        </DropdownMenuItem>
+                      </>
                     )}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -147,30 +202,46 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-in">
             <nav className="flex flex-col gap-1">
-              {[
-                { to: '/', label: 'Ana Səhifə' },
-                { to: '/#jobs', label: 'İş Elanları' },
-                { to: '/#categories', label: 'Kateqoriyalar' },
-                { to: '/#contact', label: 'Əlaqə' },
-              ].map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="px-4 py-3 text-foreground hover:bg-muted rounded-xl transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
+              {navLinks.map((link) => (
+                link.isPage ? (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="px-4 py-3 text-foreground hover:bg-muted rounded-xl transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    onClick={(e) => handleNavClick(e, link.to)}
+                    className="px-4 py-3 text-foreground hover:bg-muted rounded-xl transition-colors cursor-pointer"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
               {isEmployer && (
-                <Link
-                  to="/create-job"
-                  className="px-4 py-3 text-primary font-medium hover:bg-primary/10 rounded-xl transition-colors flex items-center gap-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Plus className="h-4 w-4" />
-                  Yeni elan yarat
-                </Link>
+                <>
+                  <Link
+                    to="/my-ads"
+                    className="px-4 py-3 text-foreground hover:bg-muted rounded-xl transition-colors flex items-center gap-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <FileText className="h-4 w-4" />
+                    Elanlarım
+                  </Link>
+                  <Link
+                    to="/create-job"
+                    className="px-4 py-3 text-primary font-medium hover:bg-primary/10 rounded-xl transition-colors flex items-center gap-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Plus className="h-4 w-4" />
+                    Yeni elan yarat
+                  </Link>
+                </>
               )}
             </nav>
           </div>

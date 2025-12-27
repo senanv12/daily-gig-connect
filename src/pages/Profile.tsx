@@ -12,14 +12,16 @@ import {
 } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ChatSidebar } from '@/components/chat/ChatSidebar';
 import { StreakBadge } from '@/components/profile/StreakBadge';
 import { PointsDisplay } from '@/components/profile/PointsDisplay';
+import { EarningsDisplay } from '@/components/profile/EarningsDisplay';
 import { JobCard } from '@/components/jobs/JobCard';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/context/AuthContext';
+import { useJobs } from '@/context/JobContext';
 import { WorkerProfile, EmployerProfile } from '@/types';
-import { mockJobs } from '@/data/mockJobs';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -30,13 +32,16 @@ export default function Profile() {
     return null;
   }
 
+  const { getJobsByEmployer } = useJobs();
   const isWorker = user.role === 'worker';
   const workerProfile = user as WorkerProfile;
   const employerProfile = user as EmployerProfile;
+  const myJobs = getJobsByEmployer(user.id);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <ChatSidebar />
 
       <main className="py-8">
         <div className="container-custom">
@@ -148,6 +153,13 @@ export default function Profile() {
                   {/* Points Section */}
                   <PointsDisplay points={workerProfile.points} />
 
+                  {/* Earnings Section */}
+                  <EarningsDisplay
+                    totalEarnings={workerProfile.points * 2.5}
+                    thisMonth={185}
+                    pendingPayment={70}
+                  />
+
                   {/* Completed Jobs */}
                   <div className="bg-card border border-border rounded-2xl p-6">
                     <h2 className="text-lg font-semibold text-foreground mb-4">
@@ -189,11 +201,18 @@ export default function Profile() {
                       </Link>
                     </div>
 
-                    {mockJobs.length > 0 ? (
+                    {myJobs.length > 0 ? (
                       <div className="space-y-4">
-                        {mockJobs.slice(0, 3).map((job) => (
+                        {myJobs.slice(0, 3).map((job) => (
                           <JobCard key={job.id} job={job} showApplyButton={false} />
                         ))}
+                        {myJobs.length > 3 && (
+                          <Link to="/my-ads">
+                            <Button variant="outline" className="w-full">
+                              Bütün elanları gör ({myJobs.length})
+                            </Button>
+                          </Link>
+                        )}
                       </div>
                     ) : (
                       <div className="text-center py-8">
