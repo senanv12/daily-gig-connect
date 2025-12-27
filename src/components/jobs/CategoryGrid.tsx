@@ -7,11 +7,12 @@ import {
   Truck,
   Sparkles,
   MoreHorizontal,
+  PartyPopper,
 } from 'lucide-react';
 import { JOB_CATEGORIES, JobCategory } from '@/types';
 import { cn } from '@/lib/utils';
 
-const iconMap = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Calendar,
   UtensilsCrossed,
   Warehouse,
@@ -20,6 +21,7 @@ const iconMap = {
   Truck,
   Sparkles,
   MoreHorizontal,
+  PartyPopper,
 };
 
 interface CategoryGridProps {
