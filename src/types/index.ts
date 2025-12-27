@@ -63,6 +63,7 @@ export type JobCategory =
   | 'promotion'
   | 'delivery'
   | 'cleaning'
+  | 'festival'
   | 'other';
 
 export interface ChatMessage {
@@ -89,6 +90,7 @@ export const JOB_CATEGORIES: { value: JobCategory; label: string; icon: string }
   { value: 'promotion', label: 'Reklam', icon: 'Megaphone' },
   { value: 'delivery', label: 'Çatdırılma', icon: 'Truck' },
   { value: 'cleaning', label: 'Təmizlik', icon: 'Sparkles' },
+  { value: 'festival', label: 'Festival', icon: 'PartyPopper' },
   { value: 'other', label: 'Digər', icon: 'MoreHorizontal' },
 ];
 

@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
+    --background: 220 25% 97%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -18,44 +18,46 @@
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 14% 96%;
+    --secondary: 220 20% 94%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 12% 50%;
 
-    --accent: 25 95% 95%;
-    --accent-foreground: 25 95% 40%;
+    --accent: 25 100% 96%;
+    --accent-foreground: 25 95% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 25 95% 53%;
-
-    --radius: 0.75rem;
-
-    /* Custom colors */
-    --amber: 25 95% 53%;
-    --amber-light: 25 95% 95%;
-    --amber-dark: 25 95% 40%;
-    --slate-dark: 222 47% 11%;
-    --slate-medium: 220 9% 46%;
     --success: 142 76% 36%;
     --success-light: 142 76% 95%;
 
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 25 95% 53%;
+
+    --radius: 1rem;
+
+    /* Custom colors */
+    --amber: 25 95% 53%;
+    --amber-light: 25 100% 96%;
+    --amber-dark: 20 95% 42%;
+    --slate-dark: 222 47% 11%;
+    --slate-medium: 220 12% 50%;
+
     /* Streak colors */
-    --bronze: 30 60% 50%;
-    --silver: 220 10% 65%;
+    --bronze: 30 70% 45%;
+    --silver: 220 15% 60%;
     --gold: 45 93% 47%;
     --diamond: 199 89% 48%;
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.04);
+    --shadow-md: 0 4px 12px -2px hsl(222 47% 11% / 0.08), 0 2px 4px -2px hsl(222 47% 11% / 0.04);
+    --shadow-lg: 0 12px 24px -4px hsl(222 47% 11% / 0.1), 0 4px 8px -4px hsl(222 47% 11% / 0.06);
+    --shadow-xl: 0 24px 48px -8px hsl(222 47% 11% / 0.12), 0 8px 16px -6px hsl(222 47% 11% / 0.08);
+    --shadow-glow: 0 0 40px -8px hsl(25 95% 53% / 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -63,47 +65,50 @@
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 220 15% 90%;
     --sidebar-ring: 25 95% 53%;
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 220 20% 97%;
+    --background: 222 47% 6%;
+    --foreground: 220 25% 95%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 220 20% 97%;
+    --card: 222 40% 10%;
+    --card-foreground: 220 25% 95%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 220 20% 97%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 220 25% 95%;
 
-    --primary: 25 95% 53%;
+    --primary: 25 95% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 30% 18%;
-    --secondary-foreground: 220 20% 97%;
+    --secondary: 222 35% 14%;
+    --secondary-foreground: 220 25% 95%;
 
-    --muted: 222 30% 18%;
-    --muted-foreground: 220 14% 65%;
+    --muted: 222 35% 14%;
+    --muted-foreground: 220 20% 60%;
 
-    --accent: 25 95% 20%;
-    --accent-foreground: 25 95% 80%;
+    --accent: 25 80% 15%;
+    --accent-foreground: 25 95% 75%;
 
-    --destructive: 0 62% 30%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 22%;
-    --input: 222 30% 22%;
-    --ring: 25 95% 53%;
+    --success: 142 70% 40%;
+    --success-light: 142 50% 15%;
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 220 20% 97%;
-    --sidebar-primary: 25 95% 53%;
+    --border: 222 35% 18%;
+    --input: 222 35% 18%;
+    --ring: 25 95% 55%;
+
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 220 25% 95%;
+    --sidebar-primary: 25 95% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 30% 18%;
-    --sidebar-accent-foreground: 220 20% 97%;
-    --sidebar-border: 222 30% 22%;
-    --sidebar-ring: 25 95% 53%;
+    --sidebar-accent: 222 35% 14%;
+    --sidebar-accent-foreground: 220 25% 95%;
+    --sidebar-border: 222 35% 18%;
+    --sidebar-ring: 25 95% 55%;
   }
 }
 
@@ -114,7 +119,6 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Manrope', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -128,23 +132,23 @@
   }
 
   .card-elevated {
-    @apply bg-card rounded-xl border border-border shadow-card transition-all duration-300 hover:shadow-card-hover;
+    @apply bg-card rounded-2xl border border-border shadow-card transition-all duration-300 hover:shadow-card-hover;
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:opacity-90 active:scale-[0.98];
+    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:opacity-90 active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-secondary/80;
+    @apply bg-secondary text-secondary-foreground font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:bg-secondary/80;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-primary-foreground;
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:bg-primary hover:text-primary-foreground;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200;
   }
 
   .badge-bronze {
@@ -171,22 +175,34 @@
     @apply bg-gradient-to-br from-amber-light via-background to-secondary;
   }
 
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
+  }
+
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.6s ease-out forwards;
   }
 
   .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.6s ease-out forwards;
   }
 
   .animate-slide-in-right {
-    animation: slideInRight 0.3s ease-out forwards;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-amber-dark;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
@@ -202,7 +218,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -221,15 +237,53 @@
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
   }
   50% {
-    box-shadow: 0 0 0 8px hsl(var(--primary) / 0);
+    box-shadow: 0 0 0 12px hsl(var(--primary) / 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50 transition-colors;
 }
