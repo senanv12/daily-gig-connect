@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/context/AuthContext";
 import { JobProvider } from "@/context/JobContext";
 import { ChatProvider } from "@/context/ChatContext";
+import { InfiniteGridBackground } from "@/components/ui/infinite-grid-background";
 import Index from "./pages/Index";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -28,16 +29,18 @@ const App = () => (
               <Toaster />
               <Sonner />
               <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/create-job" element={<CreateJob />} />
-                  <Route path="/jobs" element={<Jobs />} />
-                  <Route path="/my-ads" element={<MyAds />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
+                <InfiniteGridBackground>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/create-job" element={<CreateJob />} />
+                    <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/my-ads" element={<MyAds />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </InfiniteGridBackground>
               </BrowserRouter>
             </TooltipProvider>
           </ChatProvider>
