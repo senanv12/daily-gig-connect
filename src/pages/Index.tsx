@@ -8,6 +8,7 @@ import { JobCard } from '@/components/jobs/JobCard';
 import { JobFilters } from '@/components/jobs/JobFilters';
 import { CategoryGrid } from '@/components/jobs/CategoryGrid';
 import { LocationMap } from '@/components/ui/expand-map';
+import { HeroGridBackground } from '@/components/ui/hero-grid-background';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -74,10 +75,7 @@ export default function Index() {
       <ChatSidebar />
 
       {/* Hero Section with Map */}
-      <section className="relative overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-light via-background to-secondary" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,hsl(var(--primary)/0.08),transparent_50%)]" />
-        
+      <HeroGridBackground className="py-16 lg:py-24">
         <div className="container-custom relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
@@ -109,7 +107,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </HeroGridBackground>
 
       {/* Stats */}
       <section className="py-12 bg-card border-y border-border">
