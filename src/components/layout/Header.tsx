@@ -1,10 +1,9 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { User, LogOut, Menu, X, Plus, FileText, Home, Briefcase, Grid, Mail } from 'lucide-react';
+import { User, LogOut, Menu, X, Briefcase, Plus, FileText } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { Dock } from '@/components/ui/dock-two';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,13 +58,6 @@ export function Header() {
     }
   }, [location]);
 
-  const dockItems = [
-    { icon: Home, label: 'Ana Səhifə', href: '/' },
-    { icon: Briefcase, label: 'İş Elanları', href: '/jobs' },
-    { icon: Grid, label: 'Kateqoriyalar', href: '/#categories' },
-    { icon: Mail, label: 'Əlaqə', href: '/#contact' },
-  ];
-
   const navLinks = [
     { to: '/', label: 'Ana Səhifə', isPage: true },
     { to: '/jobs', label: 'İş Elanları', isPage: true },
@@ -87,10 +79,29 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Dock */}
-          <div className="hidden md:block">
-            <Dock items={dockItems} />
-          </div>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              link.isPage ? (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  onClick={(e) => handleNavClick(e, link.to)}
+                  className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all font-medium cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              )
+            ))}
+          </nav>
 
           {/* Right Side */}
           <div className="flex items-center gap-2">
