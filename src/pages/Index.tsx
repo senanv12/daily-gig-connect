@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Briefcase, Star, Clock, Shield, Zap, MapPin } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, Star, Clock, Shield, Zap } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ChatSidebar } from '@/components/chat/ChatSidebar';
 import { JobCard } from '@/components/jobs/JobCard';
 import { JobFilters } from '@/components/jobs/JobFilters';
 import { CategoryGrid } from '@/components/jobs/CategoryGrid';
-import { LocationMap, MapPlaceholder } from '@/components/map/LocationMap';
+import { LocationMap } from '@/components/ui/expand-map';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,7 +16,7 @@ import { mockJobs } from '@/data/mockJobs';
 import { JobCategory, Job } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
+
 
 export default function Index() {
   const { user, isAuthenticated } = useAuth();
@@ -104,20 +104,8 @@ export default function Index() {
             </div>
 
             {/* Map */}
-            <div className="h-[350px] lg:h-[450px] rounded-2xl overflow-hidden shadow-xl border border-border animate-fade-in" style={{ animationDelay: '300ms' }}>
-              {GOOGLE_MAPS_API_KEY ? (
-                <LocationMap apiKey={GOOGLE_MAPS_API_KEY} />
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <MapPin className="h-8 w-8 text-primary" />
-                    </div>
-                    <p className="text-muted-foreground font-medium">Bakıda iş imkanları</p>
-                    <p className="text-sm text-muted-foreground mt-1">5+ aktiv məkan</p>
-                  </div>
-                </div>
-              )}
+            <div className="h-[350px] lg:h-[450px] animate-fade-in" style={{ animationDelay: '300ms' }}>
+              <LocationMap location="Bakı, Azərbaycan" coordinates="40.4093° N, 49.8671° E" />
             </div>
           </div>
         </div>
